@@ -1,4 +1,3 @@
-//CHECKEA SI HAY UN TOKEN VALIDO
 package com.portfolio.backend.Security.Jwt;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
       throws IOException, ServletException {
-    logger.error("Falló el método commence");
+    logger.error("Error in method commence, JWTEntryPoint");
     response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
   }
 }

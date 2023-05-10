@@ -27,15 +27,15 @@ public class JwtProvider {
   private int expiration;
 
   public String generateToken(Authentication authentication) {
-    MainUser usuarioPrincipal = (MainUser) authentication.getPrincipal();
-    return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+    MainUser mainUser = (MainUser) authentication.getPrincipal();
+    return Jwts.builder().setSubject(mainUser.getUsername())
         .setIssuedAt(new Date())
         .setExpiration(new Date(new Date().getTime() + expiration * 1000))
         .signWith(SignatureAlgorithm.HS512, secret)
         .compact();
   }
 
-  public String getNombreUsuarioFromToken(String token) {
+  public String getUsernameFromToken(String token) {
     return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
   }
 
@@ -44,15 +44,15 @@ public class JwtProvider {
       Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
       return true;
     } catch (MalformedJwtException e) {
-      logger.error("Token mal formado");
+      logger.error("Malformed Token");
     } catch (UnsupportedJwtException e) {
-      logger.error("Token no soportado");
+      logger.error("Unsupported Token");
     } catch (ExpiredJwtException e) {
-      logger.error("Token expirado");
+      logger.error("Expired Token");
     } catch (IllegalArgumentException e) {
-      logger.error("Token vacío");
+      logger.error("Empty Token");
     } catch (SignatureException e) {
-      logger.error("Firma no válida");
+      logger.error("Invalid Signature");
     }
     return false;
   }

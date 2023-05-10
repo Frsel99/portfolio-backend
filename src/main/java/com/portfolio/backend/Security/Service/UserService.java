@@ -13,21 +13,21 @@ import com.portfolio.backend.Security.Repository.iUserRepository;
 @Transactional
 public class UserService {
   @Autowired
-  iUserRepository iusuarioRepository;
+  iUserRepository iuserRepository;
 
-  public Optional<User> getByNombreUsuario(String nombreUsuario) {
-    return iusuarioRepository.findByNombreUsuario(nombreUsuario);
+  public Optional<User> getByUsername(String username) {
+    return iuserRepository.findByUsername(username);
   }
 
-  public boolean existsByNombreUsuario(String nombreUsuario) {
-    return iusuarioRepository.existsByNombreUsuario(nombreUsuario);
+  public boolean existsByUsername(String username) {
+    return iuserRepository.existsByUsername(username);
   }
 
   public boolean existsByEmail(String email) {
-    return iusuarioRepository.existsByEmail(email);
+    return iuserRepository.existsByEmail(email);
   }
 
-  public void save(User usuario) {
-    iusuarioRepository.save(usuario);
+  public void save(User user) {
+    iuserRepository.save(user);
   }
 }

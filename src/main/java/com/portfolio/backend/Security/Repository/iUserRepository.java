@@ -9,9 +9,9 @@ import com.portfolio.backend.Security.Entity.User;
 
 @Repository
 public interface iUserRepository extends JpaRepository<User, Integer> {
-  Optional<User> findByNombreUsuario(String nombreUsuario);
+  Optional<User> findByUsername(String username);
 
-  boolean existsByNombreUsuario(String nombreUsuario);
+  boolean existsByUsername(String username);
 
   boolean existsByEmail(String email);
 }

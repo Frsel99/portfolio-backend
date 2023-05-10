@@ -1,6 +1,4 @@
-
 package com.portfolio.backend.Security.Entity;
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -20,31 +18,27 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   @NotNull
-  private String nombre;
+  private String name;
   @NotNull
   @Column(unique = true)
-  private String nombreUsuario;
+  private String username;
   @NotNull
   private String email;
   @NotNull
   private String password;
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+  @JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
   private Set<Rol> roles = new HashSet<>();
-
-  // Constructores
 
   public User() {
   }
 
   public User(String nombre, String nombreUsuario, String email, String password) {
-    this.nombre = nombre;
-    this.nombreUsuario = nombreUsuario;
+    this.name = nombre;
+    this.username = nombreUsuario;
     this.email = email;
     this.password = password;
   }
-
-  // Getters and Setters
 
   public int getId() {
     return id;
@@ -54,20 +48,20 @@ public class User {
     this.id = id;
   }
 
-  public String getNombre() {
-    return nombre;
+  public String getName() {
+    return name;
   }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getNombreUsuario() {
-    return nombreUsuario;
+  public String getUsername() {
+    return username;
   }
 
-  public void setNombreUsuario(String nombreUsuario) {
-    this.nombreUsuario = nombreUsuario;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getEmail() {
