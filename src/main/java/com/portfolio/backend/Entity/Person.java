@@ -1,4 +1,4 @@
-package com.portfolio.backend.portfoliobackend.Entity;
+package com.portfolio.backend.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,8 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Person {
   @Id

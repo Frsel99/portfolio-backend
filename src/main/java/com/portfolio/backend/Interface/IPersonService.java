@@ -1,8 +1,8 @@
-package com.portfolio.backend.portfoliobackend.Interface;
+package com.portfolio.backend.Interface;
 
 import java.util.List;
 
-import com.portfolio.backend.portfoliobackend.Entity.Person;
+import com.portfolio.backend.Entity.Person;
 
 public interface IPersonService {
 
