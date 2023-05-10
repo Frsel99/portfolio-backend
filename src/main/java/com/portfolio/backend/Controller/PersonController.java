@@ -1,4 +1,4 @@
-package com.portfolio.backend.portfoliobackend.Controller;
+package com.portfolio.backend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.portfolio.backend.portfoliobackend.Entity.Person;
-import com.portfolio.backend.portfoliobackend.Service.PersonService;
+import com.portfolio.backend.Entity.Person;
+import com.portfolio.backend.Service.PersonService;
 
 @RestController
 @RequestMapping("/person")
