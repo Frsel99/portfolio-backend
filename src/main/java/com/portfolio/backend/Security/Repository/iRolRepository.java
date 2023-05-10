@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.portfolio.backend.Security.Entity.Rol;
-import com.portfolio.backend.Security.Enums.RolNombre;
+import com.portfolio.backend.Security.Enums.RolName;
 
 @Repository
 public interface iRolRepository extends JpaRepository<Rol, Integer> {
-  Optional<Rol> findByRolNombre(RolNombre rolNombre);
+  Optional<Rol> findByRolNombre(RolName rolNombre);
 }

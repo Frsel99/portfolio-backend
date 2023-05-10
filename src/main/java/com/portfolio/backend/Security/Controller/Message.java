@@ -1,15 +1,15 @@
 //controla los mensajes
 package com.portfolio.backend.Security.Controller;
 
-public class Mensaje {
+public class Message {
   private String mensaje;
 
   // Constructor
 
-  public Mensaje() {
+  public Message() {
   }
 
-  public Mensaje(String mensaje) {
+  public Message(String mensaje) {
     this.mensaje = mensaje;
   }
   // Getter y Setter

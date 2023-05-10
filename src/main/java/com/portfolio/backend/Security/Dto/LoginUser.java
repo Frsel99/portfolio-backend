@@ -3,7 +3,7 @@ package com.portfolio.backend.Security.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-public class LoginUsuario {
+public class LoginUser {
   @NotBlank
   private String nombreUsuario;
   @NotBlank

@@ -6,16 +6,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.backend.Security.Entity.Usuario;
-import com.portfolio.backend.Security.Repository.iUsuarioRepository;
+import com.portfolio.backend.Security.Entity.User;
+import com.portfolio.backend.Security.Repository.iUserRepository;
 
 @Service
 @Transactional
-public class UsuarioService {
+public class UserService {
   @Autowired
-  iUsuarioRepository iusuarioRepository;
+  iUserRepository iusuarioRepository;
 
-  public Optional<Usuario> getByNombreUsuario(String nombreUsuario) {
+  public Optional<User> getByNombreUsuario(String nombreUsuario) {
     return iusuarioRepository.findByNombreUsuario(nombreUsuario);
   }
 
@@ -27,7 +27,7 @@ public class UsuarioService {
     return iusuarioRepository.existsByEmail(email);
   }
 
-  public void save(Usuario usuario) {
+  public void save(User usuario) {
     iusuarioRepository.save(usuario);
   }
 }

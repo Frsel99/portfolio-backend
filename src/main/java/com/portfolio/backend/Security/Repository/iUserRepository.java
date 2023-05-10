@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.portfolio.backend.Security.Entity.Usuario;
+import com.portfolio.backend.Security.Entity.User;
 
 @Repository
-public interface iUsuarioRepository extends JpaRepository<Usuario, Integer> {
-  Optional<Usuario> findByNombreUsuario(String nombreUsuario);
+public interface iUserRepository extends JpaRepository<User, Integer> {
+  Optional<User> findByNombreUsuario(String nombreUsuario);
 
   boolean existsByNombreUsuario(String nombreUsuario);
 

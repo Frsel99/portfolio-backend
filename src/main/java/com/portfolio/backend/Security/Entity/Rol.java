@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import com.portfolio.backend.Security.Enums.RolNombre;
+import com.portfolio.backend.Security.Enums.RolName;
 
 @Entity
 public class Rol {
@@ -21,14 +21,14 @@ public class Rol {
   private int id;
   @NotNull
   @Enumerated(EnumType.STRING)
-  private RolNombre rolNombre;
+  private RolName rolNombre;
 
   // Constructor
 
   public Rol() {
   }
 
-  public Rol(RolNombre rolNombre) {
+  public Rol(RolName rolNombre) {
     this.rolNombre = rolNombre;
   }
 
@@ -42,11 +42,11 @@ public class Rol {
     this.id = id;
   }
 
-  public RolNombre getRolNombre() {
+  public RolName getRolNombre() {
     return rolNombre;
   }
 
-  public void setRolNombre(RolNombre rolNombre) {
+  public void setRolNombre(RolName rolNombre) {
     this.rolNombre = rolNombre;
   }
 

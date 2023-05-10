@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.portfolio.backend.Security.Entity.Rol;
-import com.portfolio.backend.Security.Enums.RolNombre;
+import com.portfolio.backend.Security.Enums.RolName;
 import com.portfolio.backend.Security.Repository.iRolRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class RolService {
   @Autowired
   iRolRepository irolRepository;
 
-  public Optional<Rol> getbyRolNombre(RolNombre rolNombre) {
+  public Optional<Rol> getbyRolNombre(RolName rolNombre) {
     return irolRepository.findByRolNombre(rolNombre);
   }
 

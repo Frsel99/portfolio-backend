@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.portfolio.backend.Security.Entity.UsuarioPrincipal;
+import com.portfolio.backend.Security.Entity.MainUser;
 
 @Component
 public class JwtProvider {
@@ -27,7 +27,7 @@ public class JwtProvider {
   private int expiration;
 
   public String generateToken(Authentication authentication) {
-    UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
+    MainUser usuarioPrincipal = (MainUser) authentication.getPrincipal();
     return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
         .setIssuedAt(new Date())
         .setExpiration(new Date(new Date().getTime() + expiration * 1000))

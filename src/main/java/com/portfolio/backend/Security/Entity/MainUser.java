@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UsuarioPrincipal implements UserDetails {
+public class MainUser implements UserDetails {
 
   private String nombre;
   private String nombreUsuario;
@@ -16,7 +16,7 @@ public class UsuarioPrincipal implements UserDetails {
   private Collection<? extends GrantedAuthority> authorities;
 
   // Constructor
-  public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password,
+  public MainUser(String nombre, String nombreUsuario, String email, String password,
       Collection<? extends GrantedAuthority> authorities) {
     this.nombre = nombre;
     this.nombreUsuario = nombreUsuario;
@@ -25,10 +25,10 @@ public class UsuarioPrincipal implements UserDetails {
     this.authorities = authorities;
   }
 
-  public static UsuarioPrincipal build(Usuario usuario) {
+  public static MainUser build(User usuario) {
     List<GrantedAuthority> authorities = usuario.getRoles().stream()
         .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
-    return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(),
+    return new MainUser(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(),
         usuario.getPassword(), authorities);
   }
 

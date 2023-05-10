@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.backend.Security.Dto.JwtDto;
-import com.portfolio.backend.Security.Dto.LoginUsuario;
-import com.portfolio.backend.Security.Dto.NuevoUsuario;
+import com.portfolio.backend.Security.Dto.LoginUser;
+import com.portfolio.backend.Security.Dto.NewUser;
 import com.portfolio.backend.Security.Entity.Rol;
-import com.portfolio.backend.Security.Entity.Usuario;
-import com.portfolio.backend.Security.Enums.RolNombre;
+import com.portfolio.backend.Security.Entity.User;
+import com.portfolio.backend.Security.Enums.RolName;
 import com.portfolio.backend.Security.Jwt.JwtProvider;
 import com.portfolio.backend.Security.Service.RolService;
-import com.portfolio.backend.Security.Service.UsuarioService;
+import com.portfolio.backend.Security.Service.UserService;
 
 @RestController
 @RequestMapping("/auth")
@@ -39,41 +39,41 @@ public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
   @Autowired
-  UsuarioService usuarioService;
+  UserService usuarioService;
   @Autowired
   RolService rolService;
   @Autowired
   JwtProvider jwtProvider;
 
   @PostMapping("/nuevo")
-  public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
+  public ResponseEntity<?> nuevo(@Valid @RequestBody NewUser nuevoUsuario, BindingResult bindingResult) {
     if (bindingResult.hasErrors())
-      return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity(new Message("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
 
     if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
-      return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity(new Message("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
 
     if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
-      return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity(new Message("Ese email ya existe"), HttpStatus.BAD_REQUEST);
 
-    Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
+    User usuario = new User(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
         nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
 
     Set<Rol> roles = new HashSet<>();
-    roles.add(rolService.getbyRolNombre(RolNombre.ROLE_USER).get());
+    roles.add(rolService.getbyRolNombre(RolName.ROLE_USER).get());
 
     if (nuevoUsuario.getRoles().contains("admin"))
-      roles.add(rolService.getbyRolNombre(RolNombre.ROLE_ADMIN).get());
+      roles.add(rolService.getbyRolNombre(RolName.ROLE_ADMIN).get());
     usuario.setRoles(roles);
     usuarioService.save(usuario);
 
-    return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
+    return new ResponseEntity(new Message("Usuario guardado"), HttpStatus.CREATED);
   }
 
   @PostMapping("/login")
-  public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
+  public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUser loginUsuario, BindingResult bindingResult) {
     if (bindingResult.hasErrors())
-      return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity(new Message("Campos mal puestos"), HttpStatus.BAD_REQUEST);
 
     Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
         loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
