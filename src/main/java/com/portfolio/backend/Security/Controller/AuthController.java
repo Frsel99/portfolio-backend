@@ -45,7 +45,7 @@ public class AuthController {
   @Autowired
   JwtProvider jwtProvider;
 
-  @PostMapping("/")
+  @PostMapping()
   public ResponseEntity<?> create(@Valid @RequestBody NewUser newUser, BindingResult bindingResult) {
     if (bindingResult.hasErrors())
       return new ResponseEntity(new Message("Invalid fields"), HttpStatus.BAD_REQUEST);

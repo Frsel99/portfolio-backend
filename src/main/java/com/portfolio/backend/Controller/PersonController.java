@@ -22,12 +22,12 @@ public class PersonController {
   @Autowired
   PersonService personService;
 
-  @GetMapping("/")
+  @GetMapping()
   public Person getPerson() {
     return personService.findPersonById((long) 1);
   }
 
-  @PostMapping("/")
+  @PostMapping()
   public HttpStatus createPerson(@RequestBody Person person) {
     personService.savePerson(person);
     return HttpStatus.CREATED;
