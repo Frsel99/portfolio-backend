@@ -16,8 +16,8 @@ public class RolService {
   @Autowired
   iRolRepository irolRepository;
 
-  public Optional<Rol> getbyRolNombre(RolName rolNombre) {
-    return irolRepository.findByRolNombre(rolNombre);
+  public Optional<Rol> getbyRolName(RolName rolName) {
+    return irolRepository.findByRolName(rolName);
   }
 
   public void save(Rol rol) {

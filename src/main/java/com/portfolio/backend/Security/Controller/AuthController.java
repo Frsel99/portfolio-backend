@@ -50,20 +50,20 @@ public class AuthController {
     if (bindingResult.hasErrors())
       return new ResponseEntity(new Message("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
 
-    if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+    if (usuarioService.existsByNombreUsuario(nuevoUsuario.getUsername()))
       return new ResponseEntity(new Message("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
 
     if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
       return new ResponseEntity(new Message("Ese email ya existe"), HttpStatus.BAD_REQUEST);
 
-    User usuario = new User(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
+    User usuario = new User(nuevoUsuario.getNombre(), nuevoUsuario.getUsername(),
         nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
 
     Set<Rol> roles = new HashSet<>();
-    roles.add(rolService.getbyRolNombre(RolName.ROLE_USER).get());
+    roles.add(rolService.getbyRolName(RolName.ROLE_USER).get());
 
     if (nuevoUsuario.getRoles().contains("admin"))
-      roles.add(rolService.getbyRolNombre(RolName.ROLE_ADMIN).get());
+      roles.add(rolService.getbyRolName(RolName.ROLE_ADMIN).get());
     usuario.setRoles(roles);
     usuarioService.save(usuario);
 

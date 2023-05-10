@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.portfolio.backend.Security.Entity;
 
 import javax.persistence.Entity;
@@ -21,18 +17,14 @@ public class Rol {
   private int id;
   @NotNull
   @Enumerated(EnumType.STRING)
-  private RolName rolNombre;
-
-  // Constructor
+  private RolName rolName;
 
   public Rol() {
   }
 
-  public Rol(RolName rolNombre) {
-    this.rolNombre = rolNombre;
+  public Rol(RolName rolName) {
+    this.rolName = rolName;
   }
-
-  // Getters and Setters
 
   public int getId() {
     return id;
@@ -42,12 +34,12 @@ public class Rol {
     this.id = id;
   }
 
-  public RolName getRolNombre() {
-    return rolNombre;
+  public RolName getRolName() {
+    return rolName;
   }
 
-  public void setRolNombre(RolName rolNombre) {
-    this.rolNombre = rolNombre;
+  public void setRolName(RolName rolName) {
+    this.rolName = rolName;
   }
 
 }
