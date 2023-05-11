@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("experience")
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:4200/" })
 public class ExperienceController {
 
   @Autowired
@@ -35,24 +36,21 @@ public class ExperienceController {
     return experienceService.findByPersonId(id);
   }
 
-  @GetMapping("/detail/{id}")
-  public ResponseEntity<Experience> getDetails(@PathVariable("id") int id) {
-    Experience experience = experienceService.getOne(id);
-    return new ResponseEntity(experience, HttpStatus.OK);
-  }
-
   @PostMapping()
-  public void create(@RequestBody Experience experience) {
+  public HttpStatus create(@RequestBody Experience experience) {
     experienceService.save(experience);
+    return HttpStatus.CREATED;
   }
 
   @DeleteMapping("/delete/{id}")
-  public void delete(@PathVariable("id") int id) {
+  public HttpStatus delete(@PathVariable("id") int id) {
     experienceService.delete(id);
+    return HttpStatus.OK;
   }
 
-  @PutMapping("/update")
-  public void edit(@RequestBody Experience experience) {
+  @PatchMapping("/update")
+  public HttpStatus edit(@RequestBody Experience experience) {
     experienceService.save(experience);
+    return HttpStatus.OK;
   }
 }
