@@ -17,12 +17,7 @@ public class ExperienceService {
   public List<Experience> list() {
     return experienceRepository.findAll();
   }
-
-  public Experience getOne(int id) {
-    Experience experience = experienceRepository.findById(id).orElse(null);
-    return experience;
-  }
-
+  
   public void save(Experience experience) {
     experienceRepository.save(experience);
   }
