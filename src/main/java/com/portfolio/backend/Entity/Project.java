@@ -2,7 +2,6 @@
 package com.portfolio.backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -45,12 +42,12 @@ public class Project {
   }
 
   public Project(String proyecto, String period, String descripcion, String[] images,
-      Person persona) {
+      Person person) {
     this.project = proyecto;
     this.period = period;
     this.description = descripcion;
     this.images = images;
-    this.person = persona;
+    this.person = person;
   }
 
   public int getId() {

@@ -26,8 +26,8 @@ public class ProjectService {
     projectRepository.deleteById(id);
   }
 
-  public void edit(Project proye) {
-    projectRepository.save(proye);
+  public void edit(Project project) {
+    projectRepository.save(project);
   }
 
 }
