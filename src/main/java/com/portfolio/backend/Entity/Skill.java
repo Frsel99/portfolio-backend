@@ -1,3 +1,4 @@
+
 package com.portfolio.backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -6,43 +7,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-public class Education {
+public class Skill {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  @NotNull
-  private String study;
-  @NotNull
-  private String period;  
-  @NotNull
-  private String institution;
-  @Lob
-  @NotNull
-  private String description;
 
+  @NotNull
+  private String skill;
+
+  @NotNull
+  @Min(0)
+  @Max(100)
+  private int percentage;
 
   @ManyToOne
-  @JoinColumn(name = "education:person_id", insertable = false, updatable = false)
+  @JoinColumn(name = "skills:person_id", insertable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Person person;
 
   private Long personId;
 
-  public Education() {
+  public Skill() {
   }
 
-  public Education(String study, String period, String description, String institution, Person person) {
-    this.study = study;
-    this.period = period;
-    this.description = description;
-    this.institution = institution;
+  public Skill(String skill, int percentage, Person person) {
+    this.skill = skill;
+    this.percentage = percentage;
     this.person = person;
   }
 
@@ -54,28 +52,20 @@ public class Education {
     this.id = id;
   }
 
-  public String getStudy() {
-    return study;
+  public String getSkill() {
+    return skill;
   }
 
-  public void setStudy(String study) {
-    this.study = study;
+  public void setSkill(String skill) {
+    this.skill = skill;
   }
 
-  public String getDescription() {
-    return description;
+  public int getPercentage() {
+    return percentage;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public String getInstitution() {
-    return institution;
-  }
-
-  public void setInstitution(String institution) {
-    this.institution = institution;
+  public void setPercentage(int percentage) {
+    this.percentage = percentage;
   }
 
   @JsonBackReference
@@ -94,13 +84,4 @@ public class Education {
   public void setPersonId(Long personId) {
     this.personId = personId;
   }
-
-  public String getPeriod() {
-    return period;
-  }
-
-  public void setPeriod(String period) {
-    this.period = period;
-  }
-
 }
