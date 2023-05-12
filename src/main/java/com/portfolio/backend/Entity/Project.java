@@ -1,6 +1,8 @@
+
 package com.portfolio.backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,42 +10,47 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-public class Education {
+public class Project {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   @NotNull
-  private String study;
+  private String project;
+
   @NotNull
-  private String period;  
-  @NotNull
-  private String institution;
+  private String period;
+
   @Lob
   @NotNull
   private String description;
 
+  @NotNull
+  private String[] images;
 
   @ManyToOne
-  @JoinColumn(name = "education:person_id", insertable = false, updatable = false)
+  @JoinColumn(name = "project:person_id", insertable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Person person;
 
   private Long personId;
 
-  public Education() {
+  public Project() {
   }
 
-  public Education(String study, String period, String description, String institution, Person person) {
-    this.study = study;
+  public Project(String proyecto, String period, String descripcion, String[] images,
+      Person persona) {
+    this.project = proyecto;
     this.period = period;
-    this.description = description;
-    this.institution = institution;
-    this.person = person;
+    this.description = descripcion;
+    this.images = images;
+    this.person = persona;
   }
 
   public int getId() {
@@ -54,12 +61,12 @@ public class Education {
     this.id = id;
   }
 
-  public String getStudy() {
-    return study;
+  public String getProject() {
+    return project;
   }
 
-  public void setStudy(String study) {
-    this.study = study;
+  public void setProject(String project) {
+    this.project = project;
   }
 
   public String getDescription() {
@@ -70,12 +77,12 @@ public class Education {
     this.description = description;
   }
 
-  public String getInstitution() {
-    return institution;
+  public String getPeriod() {
+    return period;
   }
 
-  public void setInstitution(String institution) {
-    this.institution = institution;
+  public void setPeriod(String period) {
+    this.period = period;
   }
 
   @JsonBackReference
@@ -95,12 +102,12 @@ public class Education {
     this.personId = personId;
   }
 
-  public String getPeriod() {
-    return period;
+  public String[] getImages() {
+    return images;
   }
 
-  public void setPeriod(String period) {
-    this.period = period;
+  public void setImages(String[] images) {
+    this.images = images;
   }
 
 }

@@ -16,74 +16,73 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Skill {
-     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @NotNull
-    private String skill;
+  @NotNull
+  private String skill;
 
-    @NotNull
-    @Min(0)
-    @Max(100)
-    private int percentage;
-    
-    @ManyToOne
-    @JoinColumn(name = "skills:person_id", insertable=false, updatable=false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Person person;
-    
-    private Long personId;
+  @NotNull
+  @Min(0)
+  @Max(100)
+  private int percentage;
 
+  @ManyToOne
+  @JoinColumn(name = "skills:person_id", insertable = false, updatable = false)
+  @OnDelete(action = OnDeleteAction.CASCADE)
+  private Person person;
 
-    public Skill() {
-    }
+  private Long personId;
 
-    public Skill(String skill, int percentage, Person person) {
-        this.skill = skill;
-        this.percentage = percentage;
-        this.person = person;
-    }
+  public Skill() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Skill(String skill, int percentage, Person person) {
+    this.skill = skill;
+    this.percentage = percentage;
+    this.person = person;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getSkill() {
-        return skill;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
-    }
+  public String getSkill() {
+    return skill;
+  }
 
-    public int getPercentage() {
-        return percentage;
-    }
+  public void setSkill(String skill) {
+    this.skill = skill;
+  }
 
-    public void setPercentage(int percentage) {
-        this.percentage = percentage;
-    }
+  public int getPercentage() {
+    return percentage;
+  }
 
-    @JsonBackReference
-    public Person getPerson() {
-        return person;
-    }
+  public void setPercentage(int percentage) {
+    this.percentage = percentage;
+  }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+  @JsonBackReference
+  public Person getPerson() {
+    return person;
+  }
 
-    public Long getPersonId() {
-        return personId;
-    }
+  public void setPerson(Person person) {
+    this.person = person;
+  }
 
-    public void setPersonId(Long personId) {
-        this.personId = personId;
-    }
-    
+  public Long getPersonId() {
+    return personId;
+  }
+
+  public void setPersonId(Long personId) {
+    this.personId = personId;
+  }
+
 }
