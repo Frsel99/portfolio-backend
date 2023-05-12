@@ -84,4 +84,5 @@ public class Skill {
   public void setPersonId(Long personId) {
     this.personId = personId;
   }
+
 }
