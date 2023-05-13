@@ -29,7 +29,7 @@ public class Skill {
   private int percentage;
 
   @ManyToOne
-  @JoinColumn(name = "skills:person_id", insertable = false, updatable = false)
+  @JoinColumn(name = "persons_id", insertable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Person person;
 

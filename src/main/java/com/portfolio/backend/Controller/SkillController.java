@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/skills")
+@RequestMapping("/skill")
 @CrossOrigin(origins = { "http://localhost:4200" })
 public class SkillController {
 
@@ -31,18 +32,21 @@ public class SkillController {
   }
 
   @PostMapping()
-  public void save(@RequestBody Skill skill) {
+  public HttpStatus save(@RequestBody Skill skill) {
     skillService.save(skill);
+    return HttpStatus.CREATED;
   }
 
   @DeleteMapping("/delete/{id}")
-  public void delete(@PathVariable("id") int id) {
+  public HttpStatus delete(@PathVariable("id") int id) {
     skillService.delete(id);
+    return HttpStatus.OK;
   }
 
-  @PutMapping("/update")
-  public void edit(@RequestBody Skill habi) {
+  @PatchMapping("/update")
+  public HttpStatus edit(@RequestBody Skill habi) {
     skillService.save(habi);
+    return HttpStatus.OK;
   }
 
 }

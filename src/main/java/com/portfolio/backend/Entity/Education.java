@@ -27,9 +27,8 @@ public class Education {
   @NotNull
   private String description;
 
-
   @ManyToOne
-  @JoinColumn(name = "education:person_id", insertable = false, updatable = false)
+  @JoinColumn(name = "persons_id", insertable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Person person;
 

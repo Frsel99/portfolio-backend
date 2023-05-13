@@ -32,7 +32,7 @@ public class Project {
   private String[] images;
 
   @ManyToOne
-  @JoinColumn(name = "project:person_id", insertable = false, updatable = false)
+  @JoinColumn(name = "persons_id", insertable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Person person;
 
@@ -41,11 +41,11 @@ public class Project {
   public Project() {
   }
 
-  public Project(String proyecto, String period, String descripcion, String[] images,
+  public Project(String proyecto, String period, String description, String[] images,
       Person person) {
     this.project = proyecto;
     this.period = period;
-    this.description = descripcion;
+    this.description = description;
     this.images = images;
     this.person = person;
   }
