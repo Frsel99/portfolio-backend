@@ -2,6 +2,8 @@
 package com.portfolio.backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +31,7 @@ public class Project {
   private String description;
 
   @NotNull
+  @Column(columnDefinition = "LONGBLOB")
   private String[] images;
 
   @ManyToOne
