@@ -1,6 +1,7 @@
 package com.portfolio.backend.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class PersonController {
   PersonService personService;
 
   @GetMapping()
-  public List<Person> getPerson() {
+  public Optional<Person> getPerson() {
     return personService.getPerson();
   }
 

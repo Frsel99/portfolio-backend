@@ -1,6 +1,9 @@
 package com.portfolio.backend.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.swing.text.html.Option;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +19,10 @@ public class PersonService implements IPersonService {
   IPersonRepository personRepository;
 
   @Override
-  public List<Person> getPerson() {
-    return personRepository.findAll();
+  public Optional<Person> getPerson() {
+    List<Person> persons = personRepository.findAll();
+    Optional<Person> firstUser = persons.stream().findFirst();
+    return firstUser;
   }
 
   @Override
