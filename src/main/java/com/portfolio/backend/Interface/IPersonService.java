@@ -1,12 +1,13 @@
 package com.portfolio.backend.Interface;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.portfolio.backend.Entity.Person;
 
 public interface IPersonService {
 
-  public List<Person> getPerson();
+  public Optional<Person> getPerson();
 
   public void savePerson(Person person);
 
