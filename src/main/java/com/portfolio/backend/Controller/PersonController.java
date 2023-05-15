@@ -1,5 +1,7 @@
 package com.portfolio.backend.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +25,8 @@ public class PersonController {
   PersonService personService;
 
   @GetMapping()
-  public Person getPerson() {
-    return personService.findPersonById((long) 1);
+  public List<Person> getPerson() {
+    return personService.getPerson();
   }
 
   @PostMapping()
