@@ -17,7 +17,7 @@ import com.portfolio.backend.Service.PersonService;
 
 @RestController
 @RequestMapping("/person")
-@CrossOrigin
+@CrossOrigin(origins = { "http://localhost:4200", "https://portfolio-frontend-e30d6.web.app" })
 public class PersonController {
   @Autowired
   PersonService personService;

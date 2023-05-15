@@ -32,7 +32,7 @@ import com.portfolio.backend.Security.Service.UserService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200", "https://portfolio-frontend-e30d6.web.app" })
 public class AuthController {
   @Autowired
   PasswordEncoder passwordEncoder;
