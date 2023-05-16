@@ -3,6 +3,8 @@ package com.portfolio.backend.Controller;
 import com.portfolio.backend.Entity.Project;
 import com.portfolio.backend.Service.ProjectService;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class ProjectController {
 
   @PostMapping()
   public HttpStatus create(@RequestBody Project project) {
+    if(StringUtils.isBlank(project.getProject()) || StringUtils.isBlank(project.getDescription())) {
+      return HttpStatus.BAD_REQUEST;
+    }
     projectService.save(project);
     return HttpStatus.CREATED;
   }
@@ -45,6 +50,9 @@ public class ProjectController {
 
   @PatchMapping("/update")
   public HttpStatus edit(@RequestBody Project project) {
+    if(StringUtils.isBlank(project.getProject()) || StringUtils.isBlank(project.getDescription())) {
+      return HttpStatus.BAD_REQUEST;
+    }
     projectService.edit(project);
     return HttpStatus.OK;
   }

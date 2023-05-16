@@ -3,6 +3,8 @@ package com.portfolio.backend.Controller;
 import com.portfolio.backend.Entity.Education;
 import com.portfolio.backend.Service.EducationService;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class EducationController {
 
   @PostMapping()
   public HttpStatus create(@RequestBody Education education) {
+    if(StringUtils.isBlank(education.getStudy()) || StringUtils.isBlank(education.getDescription()) || StringUtils.isBlank(education.getInstitution()) ) {
+      return HttpStatus.BAD_REQUEST;
+    }
     educationService.save(education);
     return HttpStatus.CREATED;
   }
@@ -45,6 +50,9 @@ public class EducationController {
 
   @PatchMapping("/update")
   public HttpStatus edit(@RequestBody Education education) {
+    if(StringUtils.isBlank(education.getStudy()) || StringUtils.isBlank(education.getDescription()) || StringUtils.isBlank(education.getInstitution()) ) {
+      return HttpStatus.BAD_REQUEST;
+    }
     educationService.save(education);
     return HttpStatus.OK;
   }
