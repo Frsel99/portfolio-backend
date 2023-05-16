@@ -3,6 +3,8 @@ package com.portfolio.backend.Controller;
 import com.portfolio.backend.Entity.Skill;
 import com.portfolio.backend.Service.SkillService;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class SkillController {
 
   @PostMapping()
   public HttpStatus save(@RequestBody Skill skill) {
+    if(StringUtils.isBlank(skill.getSkill())) {
+      return HttpStatus.BAD_REQUEST;
+    }
     skillService.save(skill);
     return HttpStatus.CREATED;
   }
@@ -44,8 +49,11 @@ public class SkillController {
   }
 
   @PatchMapping("/update")
-  public HttpStatus edit(@RequestBody Skill habi) {
-    skillService.save(habi);
+  public HttpStatus edit(@RequestBody Skill skill) {
+    if(StringUtils.isBlank(skill.getSkill())) {
+      return HttpStatus.BAD_REQUEST;
+    }
+    skillService.save(skill);
     return HttpStatus.OK;
   }
 
