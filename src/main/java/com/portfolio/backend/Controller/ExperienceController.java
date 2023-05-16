@@ -3,6 +3,8 @@ package com.portfolio.backend.Controller;
 import com.portfolio.backend.Entity.Experience;
 import com.portfolio.backend.Service.ExperienceService;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,9 @@ public class ExperienceController {
 
   @PostMapping()
   public HttpStatus create(@RequestBody Experience experience) {
+    if(StringUtils.isBlank(experience.getJob()) || StringUtils.isBlank(experience.getDescription()) || StringUtils.isBlank(experience.getPeriod()) ) {
+      return HttpStatus.BAD_REQUEST;
+    }
     experienceService.save(experience);
     return HttpStatus.CREATED;
   }
@@ -50,6 +55,9 @@ public class ExperienceController {
 
   @PatchMapping("/update")
   public HttpStatus edit(@RequestBody Experience experience) {
+    if(StringUtils.isBlank(experience.getJob()) || StringUtils.isBlank(experience.getDescription()) || StringUtils.isBlank(experience.getPeriod()) ) {
+      return HttpStatus.BAD_REQUEST;
+    }
     experienceService.save(experience);
     return HttpStatus.OK;
   }
